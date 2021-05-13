@@ -1,0 +1,72 @@
+
+        <div class="row">
+            <div class="col-md-8">
+                
+            <div class="card">
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                <div class="card-body">
+                  <?php View::content()?>
+                  <div class="form-group">
+                      <label for="a_controlador_id" class="text-primary"> Seleccionar Módulo</label>
+                    <?php echo Form::dbSelectCripto("a.modulo_id", NULL,NULL,NULL,' class="form-control"')?>
+
+                  </div>
+                  <div class="form-group">
+                    <label for="a_perfil_id" class="text-primary"> Seleccionar Perfil</label>
+                    <?php echo Form::select("a.perfil_id", array(),' class="form-control"')?>
+                  </div>
+                    
+                   
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-2 offset-md-10 text-right">
+                            <button type="button" id="sig"class="btn btn-outline-primary  btn-block"><i class="fa fa-arrow-right"></i>  Siguiente</button>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+                
+           </div>
+        </div>
+        <!-- /.row -->
+
+<script>
+    $(document).ready(function (){
+        ver_perfiles();
+        
+        $("#sig").click(function (){
+           let perfil_id = $("#a_perfil_id").val();
+           window.location ="<?php echo $link_sig?>"+perfil_id;
+        });        
+       
+        $("#a_modulo_id").change(function (){
+            ver_perfiles();
+        });
+    });
+    
+    function ver_perfiles()
+    {
+        var modulo_id = $("#a_modulo_id").val();
+        
+        var url = "<?php echo PUBLIC_PATH?>sysperfil/ajax_combo";
+        var datos = {"modulo_id": modulo_id};
+        console.log(modulo_id);
+        $.post(url,datos,function(r){
+            console.log(r);
+            $("#a_perfil_id").html(r);
+        });
+        
+    }
+    
+    
+  $(function () {
+
+  });
+</script>
+
+

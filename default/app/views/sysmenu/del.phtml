@@ -1,0 +1,78 @@
+
+        <div class="row">
+            <div class="col-md-8">
+                
+            <div class="card">
+              <div class="card-header d-none d-sm-none d-md-block  text-right">
+                <a class="btn btn-outline-primary" href="<?php echo $link_volver?>">
+                    <i class="fas fa-chevron-left"></i> Volver
+                </a>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                <div class="card-body">
+                  <?php View::content()?>
+                    <?php echo Form::hidden("a.id")?>
+                    <?php echo Form::hidden("a.perfil_id")?>
+                  <div class="form-group">
+                    <label for="a_modulo" class="text-primary"> Módulo Seleccionado</label>
+                    <?php echo Form::input("text","a.modulo", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Módulo" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_modulo" class="text-primary"> Perfil Seleccionado</label>
+                    <?php echo Form::input("text","a.perfil", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Perfil" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_controlador" class="text-primary"> Controlador</label>
+                    <?php echo Form::input("text","a.controlador", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_accion" class="text-primary"> Acción Seleccionada</label>
+                    <?php echo Form::input("text","a.accion", 'disabled class="form-control" maxlength="45" placeholder="Ingrese la Accion" ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_texto" class="text-primary"> Texto Menú</label>
+                    <?php echo Form::input("text","a.texto", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el texto" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_icono" class="text-primary"> Ícono Font Awesome</label>
+                    <?php echo Form::input("text","a.icono", 'disabled  class="form-control" maxlength="45" placeholder="Nombre del ícono Font Awesome" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_color" class="text-primary"> Color</label>
+                    <?php echo Form::input("text","a.color", 'disabled  class="form-control" maxlength="45" placeholder="Color del ícono bootstrap" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_posicion" class="text-primary">Posición</label>
+                    <?php echo Form::input("number","a.posicion", 'disabled  class="form-control" placeholder="Posición del Menú" ')?>
+                  </div>
+                    
+                </div>
+                <!-- /.card-body -->
+                <?php Flash::error("¿Realmente desea borrar este menú? Por favor, Confirme")?>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6 m-1">
+                            <button type="submit" class="btn btn-outline-danger btn-block">
+                                <i class="far fa-trash-alt"></i>  
+                                Si, Borrar
+                            </button>
+                        </div>
+                        <div class="col-md-5 m-1">
+                            <a class="btn btn-outline-primary btn-block" href="<?php echo $link_volver?>">
+                                <i class="fas fa-chevron-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+                
+           </div>
+        </div>
+        <!-- /.row -->
+<script>
+</script>
+

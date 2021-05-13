@@ -1,0 +1,16 @@
+            <?php foreach($lista as $value):?>
+            <tr>             
+                <td>
+<div class="dropdown">
+  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="<?php echo $link_edit. Crypto::e($value->id)?>"><i class="fa fa-edit text-indigo"></i> Modificar</a>
+    <a class="dropdown-item" href="<?php echo $link_del.Crypto::e($value->id)?>"><i class="fa fa-trash text-danger"></i> Borrar</a>
+  </div>
+</div>                </td>
+                <td><?php echo $value->controlador?></td>
+                <td><?php echo $value->perfil?></td>
+            </tr>
+            <?php endforeach;?>

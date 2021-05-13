@@ -1,0 +1,25 @@
+<?php //View::content()?>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Perfil</th>
+            <th>Precio Mensual</th>
+        </tr>    
+    </thead>
+    <tbody>
+        <?php 
+            $total = 0;
+            foreach($lista as $value):
+                $total += $value->precio;
+                ?>
+            <tr>             
+                <td><?php echo $value->perfil?></td>
+                <td>
+                    <?php  if($value->precio<=0){?> <span class="right badge badge-danger">Gratis</span>
+                    <?php } else {?> <span class="text-bold h4"><?php echo $value->precio?></span>
+                    <?php } ?>
+                </td>
+            </tr>
+            <?php endforeach;?>
+    </tbody>
+</table>

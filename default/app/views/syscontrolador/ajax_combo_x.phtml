@@ -1,0 +1,5 @@
+    <?php foreach($lista as $value):
+        $valor = Crypto::e($value->id);
+        ?>
+        <option value="<?php echo $valor?>"<?php echo $valor==$control_id?"  selected":""?>><?php echo $value->controlador?></option>
+    <?php endforeach;?>

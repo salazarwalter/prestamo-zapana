@@ -1,0 +1,58 @@
+
+        <div class="row">
+            <div class="col-md-6">
+            <div class="card">
+              <div class="card-header d-none d-sm-none d-md-block  text-right">
+                <a class="btn btn-outline-primary" href="<?php echo $link_volver?>">
+                    <i class="fas fa-chevron-left"></i> Volver
+                </a>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                  <?php echo Form::hidden("a.id")?>
+                    <?php echo Form::hidden("a.modulo_id")?>
+                <div class="card-body">
+                  <?php View::content()?>
+                  <div class="form-group">
+                      <label for="a_modulo" class="text-primary"> Módulo Seleccionado</label>
+                    <?php echo Form::input("text","a.modulo", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_modulo" class="text-primary"> Perfil Seleccionado</label>
+                    <?php echo Form::input("text","a.perfil", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                  <div class="form-group">
+                      <label for="a_controlador" class="text-primary"> Nombre del Controlador</label>
+                    <?php echo Form::input("text","a.controlador", ' disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                    
+                </div>
+                <!-- /.card-body -->
+                <?php Flash::error("Confirma borrar este Controlador  de este Módulo, Por favor, Confirmar")?>
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6 m-1">
+                            <button type="submit" class="btn btn-outline-danger btn-block">
+                                <i class="far fa-trash-alt"></i> 
+                                Si, Borrar
+                            </button>
+                        </div>
+                        <div class="col-md-5 m-1">
+                            <a class="btn btn-outline-primary btn-block" href="<?php echo $link_volver?>">
+                                <i class="fas fa-chevron-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+           </div>
+        </div>
+        <!-- /.row -->
+
+<script>
+  
+</script>
+
+

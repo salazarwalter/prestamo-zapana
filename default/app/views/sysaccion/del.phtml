@@ -1,0 +1,68 @@
+
+        <div class="row">
+            <div class="col-md-8">
+                
+            <div class="card ">
+              <div class="card-header d-none d-sm-none d-md-block  text-right">
+                <a class="btn btn-outline-primary" href="<?php echo $link_volver?>">
+                    <i class="fas fa-chevron-left"></i> Volver
+                </a>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                <div class="card-body">
+                  <?php View::content()?>
+                    <?php echo Form::hidden("a.id")?>
+                    <?php echo Form::hidden("a.perfil_id")?>
+                    <?php echo Form::hidden("a.controlador_id")?>
+                  <div class="form-group">
+                    <label for="a_modulo" class="text-primary"> Módulo Seleccionado</label>
+                    <?php echo Form::input("text","a.modulo", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_modulo" class="text-primary"> Perfil Seleccionado</label>
+                    <?php echo Form::input("text","a.perfil", 'disabled class="form-control" maxlength="45" placeholder="Ingrese el Controlador" ')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="a_controlador_id" class="text-primary"> Seleccione Controlador</label>
+                    <?php echo Form::dbSelectCripto("a.controlador_id", NULL,array("controlador","combo_controladorXperfil",array("perfil_id"=>$a->perfil_idx) ),NULL,'disabled class="form-control"',$a->controlador_idx)?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_controlador" class="text-primary"> Nombre de la Acción</label>
+                    <?php echo Form::input("text","a.accion", 'disabled class="form-control" maxlength="45" placeholder="Ingrese la acción del controlador" ')?>
+                  </div>
+                    
+                </div>
+                  <?php Flash::error("Desea borrar esta Acción? Por favor, Confirmar")?>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6 m-1">
+                            <button type="submit" class="btn btn-outline-danger btn-block">
+                                <i class="far fa-trash-alt"></i>  
+                                Si, Borrar
+                            </button>
+                        </div>
+                        <div class="col-md-5 m-1">
+                            <a class="btn btn-outline-primary btn-block" href="<?php echo $link_volver?>">
+                                <i class="fas fa-chevron-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+                
+           </div>
+        </div>
+        <!-- /.row -->
+
+<script>
+  $(function () {
+
+  });
+</script>
+
+

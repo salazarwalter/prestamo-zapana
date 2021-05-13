@@ -1,0 +1,217 @@
+
+        <div class="row">
+            <div class="col-md-12">
+            <div class="card card-white">
+                <div class="card-body">
+                  <?php View::content()?>
+                    <div class="row">
+                        <?php 
+                        //$headers=array("info","blue","cyan","fuchsia","gray","green","indigo","warning","danger","white");
+                        //$size  = count($headers);
+                        $indice=99;
+                        foreach ($lista as $value) { $indice++;?>
+                        <div class="col-md-4" id="panel<?php echo $indice?>">
+                            <div class="card">
+                                  <div class="card-header">
+                                    <h3 class="card-title">
+                                        <i class="fas fa-play text-primary"> </i>
+                                        <span class="text-bold"><?php echo $value->modulo?></span>
+                                    </h3>
+                                  </div>
+                                    <div class="card-body">
+                                <div class="info-box">
+                                  <span class="info-box-icon bg-primary elevation-1"><i class="text-white <?php echo $value->logo?>"></i></span>
+
+                                  <div class="info-box-content">
+                                    <span class="info-box-number">
+                                        <?php if($value->total<=0) {  $text=" Gratis "; }
+                                              else {$text="De Pago";} 
+                                        ?> 
+                                             <button class="btn btn-outline-primary" onclick="verPerfiles('<?php echo Crypto::e($value->id)?>')">
+                                                 (<span class="right badge badge-danger"><?php echo $text?></span>) Precio Detallado</button>
+                                                 <!--(<?php echo $value->cantidad?>) Precio Detallado</button>-->
+                                    </span>
+                                  </div>
+                                  <!-- /.info-box-content -->
+                                </div>
+
+
+
+
+                                      <div class="form-group row">
+                                        <!--<label for="inputEmail3" class="col-sm-2 col-form-label">Detalles</label>-->
+                                        <div class="col-sm-12">
+                                            <textarea class="form-control" style="border: none;" disabled=""><?php echo $value->descripcion?>
+                                            </textarea>
+                                        </div>
+                                      </div>
+
+                                      <div class="form-group row">
+                                        <div class="col-sm-6">
+                              <a href="<?php echo $value->link?>" class="venobox play-btn mb-4 btn btn-outline-primary btn-block" data-vbtype="video" data-autoplay="true">
+                                  <i class="fas fa-video"></i>  
+                                  Ver Video</a>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <button type="button" class="btn btn-outline-primary btn-block" onclick="preguntarContratacion('<?php echo Crypto::e($value->id)?>','<?php echo $indice?>')">
+                                              <i class="far fa-handshake"></i> 
+                                                  Emplear Módulo
+                                                
+                                            </button>
+                                        </div>
+                                      </div>
+                                    </div> 
+                            </div>    
+                        </div>
+                        <?php  } ?>
+                    </div>
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                </div>
+              </form>
+            </div>
+           </div>
+        </div>
+        <!-- /.row -->
+
+        
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title" id="exampleModalLabel">Perfiles y Precio</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        <div class="modal-body" id="cuerpo">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cerrar</button>
+<!--        <button type="button" class="btn btn-primary">Save changes</button>-->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleConfirmacion" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header bg-primary">
+        <h5 class="modal-title" id="exampleModalLabel">Obtención de Módulo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <?php echo Form::hidden("modulo_id")?>
+          <?php echo Form::hidden("objeto_id")?>
+          <p>
+          <h4>¿Desea usar este módulo? Confirmar</h4>
+          </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-outline-primary" onclick="contratar()">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+    
+    $(document).ready(function (){
+        //ver_modulos();
+        
+//        $("#x_modulo_id").change (function (){
+//            //ver_modulos();
+//        });
+        
+
+    $('.venobox').venobox(); 
+        
+    });
+    
+   function  verPerfiles(mod_id)
+   {
+      let modulo_id = mod_id;
+      let url= "<?php echo PUBLIC_PATH?>../../sysperfil/ajax_perfiles_contratados";
+      let datos = {"mod_id": modulo_id};
+//      console.log(datos);
+      $.post(url,datos,function (resul){
+          console.log(resul);
+          $("#cuerpo").html(resul);
+         $("#exampleModal").modal("show");
+      });
+   }
+   
+    
+   function  preguntarContratacion(mod_id,indice)
+   {
+
+         $("#modulo_id").val(mod_id);
+         $("#objeto_id").val(indice);
+         $("#exampleConfirmacion").modal("show");
+   }
+   
+   function  contratar()
+   {
+         let modulo_id = $("#modulo_id").val();
+         let url= "<?php echo PUBLIC_PATH?>../../sysperfil/ajax_modulo_add";
+         let datos = {"modulo_id": modulo_id};
+        
+         $.post(url,datos,function (resul){
+            console.log(resul);
+            console.log(JSON.parse(resul) );
+            let obj=JSON.parse(resul);
+            console.log(obj.error );
+            if(obj.error=="S"){
+                console.log("mostrar mensaje");
+                toastr.error(obj.titulo);
+            }else{
+                let objeto_id = "panel"+$("#objeto_id").val();
+    //            console.log(objeto_id);
+                $('#'+objeto_id).hide(); //oculto mediante id
+            }
+            $("#exampleConfirmacion").modal("hide");
+         });
+   }
+   
+  $(function () {
+      
+//      
+//    $("#example").DataTable({
+//      "responsive": true,
+//      "bInfo" : false,
+//       "paging": false,
+//      "searching": true,
+//      //"autoWidth": false,
+//    });
+    
+//    $("#agregar").click(function (){
+//        let modulo_id = $("#x_modulo_id").val();
+//        window.location ="<?php //echo $link_add?>"+modulo_id;
+//    });
+    
+//    $('#example2').DataTable({
+//      "paging": true,
+//      "lengthChange": false,
+//      "searching": false,
+//      "ordering": true,
+//      "info": true,
+//      "autoWidth": false,
+//      "responsive": true,
+//    });
+  });
+</script>
+
+
+

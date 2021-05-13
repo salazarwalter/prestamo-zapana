@@ -1,0 +1,80 @@
+
+        <div class="row">
+            <div class="col-md-6">
+<div class="card">
+              <div class="card-header d-none d-sm-none d-md-block  text-right">
+                <a class="btn btn-outline-primary" href="<?php echo $link_volver?>">
+                    <i class="fas fa-chevron-left"></i> Volver
+                </a>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                <div class="card-body">
+                  <?php View::content()?>
+                  <div class="form-group">
+                      <label for="a_modulo" class="text-primary"> Nombre del Módulo</label>
+                    <?php echo Form::input("text","a.modulo", ' class="form-control" maxlength="30" placeholder="Ingrese el Módulo" ')?>
+                  </div>
+                   
+                  <div class="form-group">
+                    <label for="a_descripcion" class="text-primary"> Descripción del Módulo</label>
+                    <?php echo Form::input("text","a.descripcion", ' class="form-control" maxlength="250" placeholder="Ingrese la Descripción" ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_logo" class="text-primary"> Icono</label>
+                    <?php echo Form::input("text","a.logo", ' class="form-control" maxlength="60" placeholder="Ingrese el icono" ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_link" class="text-primary"> Link Video</label>
+                    <?php echo Form::input("text","a.link", ' class="form-control" maxlength="250" placeholder="Link Completo al video" ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_privado" class="text-primary"> Uso Privado</label>
+                    <?php echo Form::select("a.privado", Modulo::$PRIVADO, ' class="form-control"  ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_publicado" class="text-primary"> Publicado</label>
+                    <?php echo Form::select("a.publicado", Modulo::$PUBLICADO, ' class="form-control"  ')?>
+                  </div>
+                    
+                  <div class="form-group">
+                    <label for="a_inicial" class="text-primary"> Inicial</label>
+                    <?php echo Form::select("a.inicial", Modulo::$INICIAL, ' class="form-control"  ')?>
+                  </div>
+                    
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                    <div class="row">
+                        <div class="col-md-6 m-1">
+                            <button type="submit" class="btn btn-outline-primary btn-block">
+                                <i class="far fa-save"></i> 
+                                Registrar
+                            </button>
+                        </div>
+                        <div class="col-md-5 m-1">
+                            <a class="btn btn-outline-primary btn-block" href="<?php echo $link_volver?>">
+                                <i class="fas fa-chevron-left"></i> Volver
+                            </a>
+                        </div>
+                    </div>
+                </div>
+              </form>
+            </div>
+           </div>
+        </div>
+        <!-- /.row -->
+
+<script>
+  $(function () {
+
+  });
+</script>
+
+

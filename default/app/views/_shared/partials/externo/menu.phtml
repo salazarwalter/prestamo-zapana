@@ -1,0 +1,36 @@
+<!-- Navigation -->
+  <nav class="navbar navbar-expand-lg bg-secondary fixed-top text-uppercase" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand js-scroll-trigger" href="<?php echo PUBLIC_PATH."../../"?>">
+          <img src="<?php echo PUBLIC_PATH?>img/signo-pesos256.png" width="32">    My Money
+      </a>
+      <button class="navbar-toggler navbar-toggler-right text-uppercase bg-primary text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" 
+               href="#inicio" onclick="redirec('<?php echo PUBLIC_PATH."../../"?>')">Inicio</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" 
+               href="#registro" onclick="redirec('<?php echo PUBLIC_PATH."../../sysingreso/registro"?>')">Registrarse</a>
+          </li>
+          <li class="nav-item mx-0 mx-lg-1">
+            <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" 
+               href="#ingresar" onclick="redirec('<?php echo PUBLIC_PATH."../../sysingreso/ingresar"?>')">Ingresar</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+<script>
+    function redirec(url){
+//        consola.log(url);
+        window.location  = url;
+    }
+</script>
+    

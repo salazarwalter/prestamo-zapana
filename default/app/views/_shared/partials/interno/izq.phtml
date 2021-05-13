@@ -1,0 +1,153 @@
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="#../../index3.html" class="brand-link">
+      <!--<span class="brand-text font-weight-light text-white text-bold"> ¿Y MI DINERO?</span>-->
+        <span class="brand-text text-white">
+            <!--<h5>-->
+                <img src="<?php echo PUBLIC_PATH?>img/signo-pesos256.png" alt="alt" width="64"/> 
+                Y, MI DINERO?
+            <!--<h5>-->
+            <!--<small class="badg">Donde esta?</small>-->
+        </span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <a href="<?php echo PUBLIC_PATH?>../../sysusuario/foto" class="d-block">
+            <img src="<?php echo Usuario::$FOTO?>" class="img-circle elevation-2" alt="User Image">
+          </a>
+        </div>
+        <div class="info">
+          <a href="<?php echo PUBLIC_PATH?>../../sysusuario/foto" class="d-block"><?php echo Usuario::$NOMBRE?></a>
+        </div>
+      </div>
+
+      <!-- Sidebar Menu -->
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+          <!-- Add icons to the links using the .nav-icon class
+               with font-awesome or any other icon font library -->
+          <li class="nav-item">
+                <button type="button" class="btn  btn-block btn-link" data-toggle="modal" data-target="#modal-sm">
+                  <!--<i class="fas fa-door-closed"></i>--> 
+                  Cerrar Sesión
+                </button>
+          </li>
+
+          
+     <?php $lista= Menu::listaGeneralMenus();
+     $uno= Session::get("uno");
+     $dos= Session::get("dos");
+
+     foreach (Menu::$LISTA_GRAL_MODULOS as $id=>$modulo) 
+     { 
+          ?>
+          <li class="nav-item has-treeview<?php echo $id==$uno?" menu-open":""?>">
+              <a href="#" class="nav-link<?php echo $id==$uno?" active":""?>" onclick="guardarControlador('<?php echo $uno?>')">
+              <i class="nav-icon fas fa-play text-info"></i>
+              <p>
+                <?php echo $modulo?>
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <?php 
+              foreach ($lista as $value) {
+                if($value->modulo == $modulo)
+                {
+                    ?>
+                        <li class="nav-item">
+                          <a href="<?php echo PUBLIC_PATH.'../../'.$value->controlador.'/'.$value->accion?>" 
+                             class="nav-link<?php echo $value->accion_id==$dos?" active":""?>"
+                             onclick="return guardarAccion(this,'<?php echo $id?>','<?php echo $value->accion_id?>')">
+                            <i class="<?php echo $value->icono?> <?php echo $value->color?> nav-icon"></i>
+                            <p><?php echo $value->texto?></p>
+                          </a>
+                        </li>
+
+                    <?php
+                }
+              }?>
+            </ul>
+          </li>
+         <?php 
+//         }
+     }
+     ?>     
+         
+      <script>
+          
+        function guardarControlador(uno)  
+        {
+            
+        }
+//        function guardarAccion(obj,uno,dos)  
+        function guardarAccion(obj,uno,dos)  
+        {
+            //obj.preventDefault();
+            let url = "<?php echo PUBLIC_PATH?>../../sysmenu/ajax_opcion_menu";
+            let datos={"uno": uno,"dos": dos};
+            $.get(url,datos,function (r){
+                console.log(r);
+                window.location = obj;
+            })
+            console.log(obj+" "+uno+" "+dos);
+            return false;
+        }
+          
+      </script>
+          
+          
+          
+          <li class="nav-header">LIQUIDACION</li>
+          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../sysliquidacion/generar" class="nav-link">
+              <i class="nav-icon fas fa-camera text-green"></i>
+              <p>Generar Pagos</p>
+            </a>
+          </li>
+<!--          <li class="nav-item">
+            <a href="<?php echo PUBLIC_PATH?>../../sysusuario/clave" class="nav-link">
+              <i class="nav-icon far fas fa-key text-green"></i>
+              <p>Cambiar Clave</p>
+            </a>
+          </li>-->
+          
+        </ul>
+      </nav>
+      <!-- /.sidebar-menu -->
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+
+  <div class="modal fade" id="modal-sm">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title">Salir del Sistema</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <p><?php Flash::warning("¿Realmente Desea Cerrar la Sesión? Confirmar")?></p>
+            </div>
+            <div class="modal-footer justify-content-between">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+              <a href="<?php echo PUBLIC_PATH?>../../sysingreso/salir" class="btn btn-info">
+                <i class="fas fa-door-closed"></i> Cerrar Sesión
+              </a>
+              
+              <!--<button type="button" class="btn btn-primary">Cerrar Sesión</button>-->
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->

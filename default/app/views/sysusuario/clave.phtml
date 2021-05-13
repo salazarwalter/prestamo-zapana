@@ -1,0 +1,45 @@
+
+        <div class="row">
+            <div class="col-md-6">
+<div class="card card-primary">
+              <div class="card-header">
+                  &nbsp;
+                <!--<a class="btn btn-primary" href="<?php //echo $link_volver?>">Volver</a>-->
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form role="form" method="post">
+                <div class="card-body">
+                  <?php View::content()?>
+                  <div class="form-group">
+                    <label for="clave1">Contraseña Actual</label>
+                    <?php echo Form::input("password","clave1", ' class="form-control" maxlength="30" placeholder="Ingrese Clave Actual" required')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="clave2">Nueva Contraseña </label>
+                    <?php echo Form::input("password","clave2", ' class="form-control" maxlength="30" placeholder="Ingrese la Nueva Clave" required')?>
+                  </div>
+                  <div class="form-group">
+                    <label for="clave3">Repita Contraseña </label>
+                    <?php echo Form::input("password","clave3", ' class="form-control" maxlength="30" placeholder="Repita la Nueva Clave" required')?>
+                  </div>
+                    
+                </div>
+                <!-- /.card-body -->
+
+                <div class="card-footer">
+                  <button type="submit" class="btn btn-primary">Cambiar Clave</button>
+                </div>
+              </form>
+            </div>
+           </div>
+        </div>
+        <!-- /.row -->
+
+<script>
+  $(function () {
+
+  });
+</script>
+
+
